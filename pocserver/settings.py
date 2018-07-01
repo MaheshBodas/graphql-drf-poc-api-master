@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     # Filtering related    
     'django_filters',
     # Authentication related
-    # 'rest_framework.authtoken', Use BasicAuthentication
+    'rest_framework.authtoken',
     'rest_auth',
     'rest_framework',
     'riskapi.apps.RiskApiConfig',
@@ -56,7 +56,7 @@ MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    # 'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -137,9 +137,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # Django REST Framework
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.IsAuthenticated'],
-    'DEFAULT_AUTHENTICATION_CLASSES': (        
-        'rest_framework.authentication.BasicAuthentication',
-        # 'rest_framework.authentication.SessionAuthentication',        
+    'DEFAULT_AUTHENTICATION_CLASSES': (   
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',    
     ),
     'DEFAULT_FILTER_BACKENDS': (
         'django_filters.rest_framework.DjangoFilterBackend',
