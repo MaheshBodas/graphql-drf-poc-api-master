@@ -63,7 +63,13 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'pocserver.urls'
-CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
+#CORS_ORIGIN_ALLOW_ALL = True
+
+CORS_ORIGIN_WHITELIST = (
+    'localhost:9528',
+    'https://warm-bastion-33183.herokuapp.com'
+)
 
 TEMPLATES = [
     {
