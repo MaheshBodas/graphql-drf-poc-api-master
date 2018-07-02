@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     # Filtering related    
     'django_filters',
     # Authentication related
-    # 'rest_framework.authtoken',
+    'rest_framework.authtoken',
     'rest_auth',
     'rest_framework',
     'riskapi.apps.RiskApiConfig',
