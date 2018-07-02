@@ -68,7 +68,7 @@ CORS_ALLOW_CREDENTIALS = True
 
 CORS_ORIGIN_WHITELIST = (
     'localhost:9528',
-    'https://warm-bastion-33183.herokuapp.com'
+    'warm-bastion-33183.herokuapp.com'
 )
 
 TEMPLATES = [
