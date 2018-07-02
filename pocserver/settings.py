@@ -71,6 +71,11 @@ CORS_ORIGIN_WHITELIST = (
     'warm-bastion-33183.herokuapp.com'
 )
 
+CSRF_TRUSTED_ORIGINS = (
+    'localhost:9528',
+    'warm-bastion-33183.herokuapp.com'
+)
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
