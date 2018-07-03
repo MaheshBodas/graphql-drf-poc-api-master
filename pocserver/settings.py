@@ -76,6 +76,8 @@ CSRF_TRUSTED_ORIGINS = (
     'warm-bastion-33183.herokuapp.com'
 )
 
+CSRF_COOKIE_DOMAIN = '.herokuapp.com'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -160,7 +162,7 @@ REST_FRAMEWORK = {
 
 if ENVIRONMENT == 'production':
     DEBUG = False
-    """ SECRET_KEY = os.getenv('SECRET_KEY')
+    SECRET_KEY = os.getenv('SECRET_KEY')
     SESSION_COOKIE_SECURE = True
     SECURE_BROWSER_XSS_FILTER = True
     SECURE_CONTENT_TYPE_NOSNIFF = True
@@ -168,4 +170,4 @@ if ENVIRONMENT == 'production':
     SECURE_HSTS_SECONDS = 31536000
     SECURE_REDIRECT_EXEMPT = []
     SECURE_SSL_REDIRECT = True
-    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https') """
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
