@@ -69,7 +69,7 @@ CORS_ALLOW_CREDENTIALS = True
 
 CORS_ORIGIN_WHITELIST = (
     'localhost:9528',
-    'warm-bastion-33183.herokuapp.com'
+    'britecore-poc-ui.herokuapp.com'
 )
 
 TEMPLATES = [
@@ -147,7 +147,7 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         # Only appropriate for javascript based clients that are running in the same site as the API
         'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.TokenAuthentication',         
+        # 'rest_framework.authentication.TokenAuthentication',         
     ),
     'DEFAULT_FILTER_BACKENDS': (
         'django_filters.rest_framework.DjangoFilterBackend',
