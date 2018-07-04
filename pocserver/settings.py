@@ -56,7 +56,8 @@ MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    # 'django.middleware.csrf.CsrfViewMiddleware',
+    # To be used for only along with SessionAuthentication
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -68,15 +69,8 @@ CORS_ALLOW_CREDENTIALS = True
 
 CORS_ORIGIN_WHITELIST = (
     'localhost:9528',
-    'warm-bastion-33183.herokuapp.com'
+    'britecore-poc-ui.herokuapp.com'
 )
-
-""" CSRF_TRUSTED_ORIGINS = (
-    'localhost',
-    'herokuapp.com'
-)
-
-CSRF_COOKIE_DOMAIN = 'herokuapp.com' """
 
 TEMPLATES = [
     {
@@ -151,8 +145,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.IsAuthenticated'],
     'DEFAULT_AUTHENTICATION_CLASSES': (
+        # Only appropriate for javascript based clients that are running in the same site as the API
         'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.TokenAuthentication',         
+        # 'rest_framework.authentication.TokenAuthentication',         
     ),
     'DEFAULT_FILTER_BACKENDS': (
         'django_filters.rest_framework.DjangoFilterBackend',
