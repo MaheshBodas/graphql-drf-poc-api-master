@@ -17,6 +17,7 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from rest_framework.schemas import get_schema_view
 from rest_framework.documentation import include_docs_urls
+from rest_framework.authtoken import views
 
 API_TITLE = 'Pastebin API'
 API_DESCRIPTION = 'A Web API for creating and viewing RiskTypes and RiskInstances based on that.'
@@ -26,7 +27,8 @@ schema_view = get_schema_view(title=API_TITLE)
 urlpatterns = [    
     url(r'^', include('riskapi.urls')),
     url(r'^auth/', include('rest_auth.urls')),    
-    url(r'^admin/', admin.site.urls),    
+    url(r'^admin/', admin.site.urls),
+    url(r'^api-token-auth/', views.obtain_auth_token),
     url(r'^schema/$', schema_view),
     url(r'^docs/', include_docs_urls(title=API_TITLE, description=API_DESCRIPTION))
 ]
