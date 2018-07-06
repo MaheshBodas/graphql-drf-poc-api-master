@@ -14,6 +14,9 @@ class UserViewSet(viewsets.ReadOnlyModelViewSet):
     """
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    filter_backends = (filters.DjangoFilterBackend,)
+    filter_fields = ('username', 'email', 'is_staff',)
+    permission_classes = (permissions.IsAuthenticated,)
 
 class RiskTypeKeyViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = risktype.objects.all()
