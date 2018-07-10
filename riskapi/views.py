@@ -44,7 +44,7 @@ class RiskTypeViewSet(viewsets.ModelViewSet):
 class RiskViewSet(viewsets.ModelViewSet):
     queryset = risk.objects.all()
     filter_backends = (filters.DjangoFilterBackend,)
-    filter_fields = ('id', 'risk_name',)
+    filter_fields = ('id', 'risk_name', 'risktype',)
     serializer_class = RiskSerializer    
     permission_classes = (permissions.IsAuthenticated,)
     # http_method_names = ['get', 'post']
