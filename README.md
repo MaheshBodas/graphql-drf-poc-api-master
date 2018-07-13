@@ -1,4 +1,4 @@
-# BriteCore PoC API Server
+# DJango Rest PoC API Server
 
 Source code for the [DJango Rest PoC Server][server].
 
