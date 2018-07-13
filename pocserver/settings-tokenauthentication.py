@@ -69,7 +69,8 @@ CORS_ALLOW_CREDENTIALS = True
 
 CORS_ORIGIN_WHITELIST = (
     'localhost:9528',
-    'britecore-poc-ui.herokuapp.com'
+    'localhost:5000',
+    'vuejs-poc-ui-maheshbodas.herokuapp.com'
 )
 
 TEMPLATES = [
