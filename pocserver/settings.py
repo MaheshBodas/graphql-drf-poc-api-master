@@ -101,6 +101,17 @@ DATABASES = {
     )
 }
 
+DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'pocdb',
+            'USER': 'adminuser',
+            'PASSWORD': 'poctest1',
+            'HOST': 'pocdbinstance.cytinzjte6qx.ap-southeast-1.rds.amazonaws.com',
+            'PORT': '3306',
+        }
+    }
+
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
 
