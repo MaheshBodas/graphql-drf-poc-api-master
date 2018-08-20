@@ -93,12 +93,12 @@ WSGI_APPLICATION = 'pocserver.wsgi.application'
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.mysql',
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
             'NAME': 'pocdb',
             'USER': 'adminuser',
             'PASSWORD': 'poctest1',
             'HOST': 'pocdbinstance.cytinzjte6qx.ap-southeast-1.rds.amazonaws.com',
-            'PORT': '3306',
+            'PORT': '5432',
         }
     }
 
