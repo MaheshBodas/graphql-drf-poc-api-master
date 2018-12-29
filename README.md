@@ -16,10 +16,10 @@ REST based API to for defining RiskTypes and Risk
 ### Installation
 
 ```sh
-$ mkvirtualenv britecore-poc-api
+$ mkvirtualenv drf-poc-api-master
 $ setprojectdir .
 $ git clone https://github.com/MaheshBodas/drf-poc-api-master
-$ workon britecore-poc-api 
+$ workon drf-poc-api-master 
 $ python manage.py makemigrations riskapi
 $ python manage.py migrate
 S python manage.py shell
