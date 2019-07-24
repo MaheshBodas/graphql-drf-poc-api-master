@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+import dj_database_url
+
 ENVIRONMENT = os.getenv('ENVIRONMENT', 'development')
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -68,7 +70,8 @@ CORS_ALLOW_CREDENTIALS = True
 CORS_ORIGIN_WHITELIST = (
     'localhost:9528',
     'localhost:5000',
-    'vuejs-poc-ui-maheshbodas.herokuapp.com'
+    'vuejs-poc-ui-maheshbodas.herokuapp.com',
+    'reactjs-poc-ui-master.herokuapp.com'
 )
 
 TEMPLATES = [
@@ -91,16 +94,13 @@ WSGI_APPLICATION = 'pocserver.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
+
 DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'pocdb',
-            'USER': 'adminuser',
-            'PASSWORD': 'poctest1',
-            'HOST': 'pocdbinstance.cytinzjte6qx.ap-southeast-1.rds.amazonaws.com',
-            'PORT': '5432',
-        }
-    }
+    'default':
+    dj_database_url.config(
+        default='sqlite:///{}'.format(os.path.join(BASE_DIR, 'db.sqlite3'))
+    )
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
