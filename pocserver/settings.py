@@ -82,9 +82,8 @@ CORS_ALLOW_CREDENTIALS = True
 
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:9528',
-    'http://localhost:5000',
-    'https://vuejs-poc-ui-maheshbodas.herokuapp.com',
-    'https://reactjs-poc-ui-master.herokuapp.com'
+    'http://localhost:5000',    
+    'https://apollo-reactjs-poc-ui-master.herokuapp.com'
 )
 
 TEMPLATES = [
