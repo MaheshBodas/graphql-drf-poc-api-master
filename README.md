@@ -1,13 +1,13 @@
 # DJango REST PoC API Server drf-poc-api-master
 
-Source code for the [DJango REST PoC Server][server].
+Source code for the [DJango GraphQL PoC Server][server].
 
 [server]: https://github.com/MaheshBodas/drf-poc-api-master
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 
-REST based API to for defining RiskTypes and Risk
+GraphQL based API to for defining RiskTypes and Risk
 
   - Post RiskTypes and Risk
   - Get RiskTypes, RiskTypeKeys, RiskKeys
@@ -18,7 +18,7 @@ REST based API to for defining RiskTypes and Risk
 ```sh
 $ mkvirtualenv drf-poc-api-master
 $ setprojectdir .
-$ git clone https://github.com/MaheshBodas/drf-poc-api-master
+$ git clone https://github.com/MaheshBodas/graphql-drf-poc-api-master
 $ workon drf-poc-api-master 
 $ python manage.py makemigrations riskapi
 $ python manage.py migrate
