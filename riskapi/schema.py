@@ -1,4 +1,6 @@
+import argparse
 import graphene
+from graphene import Connection, ConnectionField, Node, Int
 from graphene_django.types import DjangoObjectType
 from graphene_django.debug import DjangoDebug
 from graphene_django.rest_framework.mutation import SerializerMutation
@@ -62,6 +64,40 @@ class RiskFieldQL(DjangoObjectType):
     risk_type_field_enum = graphene.String()
     def resolve_risk_type_field_enum(self, info):
         return self.risktypefield.risk_type_field_enum 
+
+    risk_type_field_description = graphene.String()
+    def resolve_risk_type_field_description(self, info):
+        return self.risktypefield.risk_type_field_description 
+
+# Edge and connection for Pagination Working
+class Risk_Node(DjangoObjectType):
+    class Meta:
+        model = Risk
+        ordering = ['risk_name']
+        interfaces = (Node, )
+        exclude = ('id','risktype',)        
+
+    ID = graphene.Int()
+    def resolve_ID(self, info):
+        return self.id 
+
+    risktype = graphene.Int()
+    def resolve_risktype(self, info):
+        return self.risktype.id 
+    
+    risk_type_name = graphene.String()
+    def resolve_risk_type_name(self, info):
+        return self.risktype.risk_type_name 
+
+
+class Risk_Connection(Connection):
+    class Meta:
+        node = Risk_Node
+    count = Int()
+
+    def resolve_count(self, root, info):
+        return len(root.edges)
+# Edge and connection for Pagination Working
 
     
 # Create Input Object Types
@@ -142,7 +178,26 @@ class CommonQuery(object):
     all_users = graphene.List(UserQL)
 
     all_risks = graphene.List(RiskQL, risktype=graphene.Int())
-    
+
+    risks = ConnectionField(Risk_Connection, risktype=graphene.Int(), risk_name=graphene.String())
+    def resolve_risks(self, info, **kwargs):
+        # return Risk.objects.all()
+        nRiskType = 1
+        strRiskName = ''
+        for arg in kwargs:
+            if(arg is 'risktype' and arg is not None):
+                nRiskType = kwargs[arg]
+                risks = Risk.objects.select_related("risktype").all()
+                return risks.filter(risktype=nRiskType).order_by('risk_name')
+            elif(arg is 'risk_name' and arg is not None):
+                strRiskName = kwargs[arg]  
+                # Model.objects.filter(adv_images__regex=r'^\d+')[:3]
+                strRiskName = "^" + strRiskName + ".*?$"
+                return Risk.objects.filter(risk_name__regex=strRiskName).order_by('risk_name')
+
+        # if risktype is None return all objects
+        return Risk.objects.select_related("risktype").all().order_by('risk_name')
+
     def resolve_all_users(self, context):
         # We can easily optimize query count in the resolve method
         return User.objects.all()
@@ -182,11 +237,19 @@ class AdminQuery(CommonQuery):
     all_risktypes = graphene.List(RiskTypeQL)    
     
     def resolve_risktypefield(self, info, **kwargs):        
+        id = kwargs.get('id')
         risk_type_field_name = kwargs.get('risk_type_field_name')
-        risk_type_field_enum = kwargs.get('risk_type_field_name')
-        slug = risk_type_field_name + '_' + risk_type_field_enum
-        if slug is not None:
-            return RiskTypeField.objects.get(pk=slug)
+        
+        
+        if id is not None:
+            return RiskTypeField.objects.get(pk=id)
+
+        if risk_type_field_name is not None:
+            return RiskTypeField.objects.get(risk_type_field_name=risk_type_field_name)
+
+        # slug = risk_type_field_name + '_' + risk_type_field_enum
+        # if slug is not None:
+        #     return RiskTypeField.objects.get(pk=slug)
 
         return None    
 

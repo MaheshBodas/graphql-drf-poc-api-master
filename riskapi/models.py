@@ -112,4 +112,8 @@ class RiskField(models.Model):
     @property
     def risk_type_field_enum(self):
         self.risktypefield.risk_type_field_enum
+
+    @property
+    def risk_type_field_description(self):
+        self.risktypefield.risk_type_field_description
     #

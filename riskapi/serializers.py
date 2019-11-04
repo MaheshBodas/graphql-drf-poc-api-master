@@ -120,13 +120,15 @@ class RiskFieldSerializer(serializers.ModelSerializer):
     risk_type_field_name = serializers.ReadOnlyField(
         source='risktypefield.risk_type_field_name')
     risk_type_field_enum = serializers.ReadOnlyField(
-        source='risktypefield.risk_type_field_enum')
+        source='risktypefield.risk_type_field_enum')  
+    risk_type_field_description = serializers.ReadOnlyField(
+        source='risktypefield.risk_type_field_description')   
     risk_field_value = serializers.CharField(required=True)
 
     class Meta:
         model = RiskField
         fields = ('id', 'risktypefield', 'risk', 'risk_type_field_name',
-                  'risk_type_field_enum', 'risk_field_value')
+                  'risk_type_field_enum', 'risk_type_field_description', 'risk_field_value')
 
         # Explicitly mark required fields
         required_fields = (
