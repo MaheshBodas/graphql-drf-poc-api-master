@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     "graphene_django", 
     # Filtering related    
     'django_filters',
+    # Import and Export related
+    'import_export',
     # Authentication related
     'rest_framework.authtoken',
     'rest_auth',
