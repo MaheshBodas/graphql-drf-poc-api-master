@@ -27,6 +27,7 @@ and RiskFields are returned to client of serve API in JSON format.
 
 ### For details of User guide refer following links
 - [User Guide](https://github.com/MaheshBodas/graphql-drf-poc-api-master/tree/master/blob/graphql-drf-poc-api-master-user-guide.pdf)
+- [Sample GraphQL Queries and Mutations](https://github.com/MaheshBodas/graphql-drf-poc-api-master/tree/master/blob/graphql-query.txt)
 
 ### It makes use of following technology.
 - DJango Rest Framework, Graphene-DJango library.
