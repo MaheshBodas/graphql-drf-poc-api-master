@@ -24,6 +24,7 @@ and RiskFields are returned to client of serve API in JSON format.
   Default GraphQLView in Graphene library allows access to all of the users.
   - GraphQL has concept of queries i.e. Client application defines shape of data to be retried from server. Using Graphene-Django library we can define Query and Resolver classes. Thus root element in GraphQL query map to one of the resolver class which is further used to get and filter data from underlying Django model.
   - GraphQL Mutations, Input types are used for adding and updating Django Models. Made use of Django serializers in DRF to do all validation before committing model changes.
+  - Added DJango Admin support to Import and Export RiskTypes and Risk Instances.
 
 ### For details of User guide refer following links
 - [User Guide](https://github.com/MaheshBodas/graphql-drf-poc-api-master/tree/master/blob/graphql-drf-poc-api-master-user-guide.pdf)
