@@ -7,10 +7,14 @@ Source code for the [DJango GraphQL PoC Server][server].
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 
-GraphQL based API to for defining RiskTypes and Risk
+GraphQL based API to for defining RiskTypes and Risk Instances based on RiskType
 
-  - Post RiskTypes and Risk
-  - Get RiskTypes, RiskTypeKeys, RiskKeys
+  - API allows users to create RiskTypes and associated RiskTypeFields
+in one go with use of nested serializer.
+  - During creation of Risk Instance system checks that proper referential integrity
+is maintained with Risk Type and during creation of Risk Fields
+system ensures that proper referential integrity is maintained with
+Risk and Risk Type fields.
   - Get Single Risk, All Risks
 
 ### Installation
