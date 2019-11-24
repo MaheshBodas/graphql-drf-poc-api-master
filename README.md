@@ -23,8 +23,14 @@ and RiskFields are returned to client of serve API in JSON format.
   - Added new View class to the application so as to avoid unauthenticated access to GraphQL queries and mutation.  
   Default GraphQLView in Graphene library allows access to all of the users.
   - GraphQL has concept of queries i.e. Client application defines shape of data to be retried from server. Using Graphene-Django library we can define Query and Resolver classes. Thus root element in GraphQL query map to one of the resolver class which is further used to get and filter data from underlying Django model.
-  - GraphQL Mutations, Input types are used for adding and updating Django Models. Made use of Django serializersin DRF to do all validation before committing model changes.
+  - GraphQL Mutations, Input types are used for adding and updating Django Models. Made use of Django serializers in DRF to do all validation before committing model changes.
 
+### For details of User and Architecture guide refer following links
+- [User Guide](https://github.com/MaheshBodas/apollo-reactjs-poc-ui-master/blob/master/blob/Apollo-ReactJS-PoC-UI-Presentation.pdf)
+
+### It makes use of following technology.
+- DJango Rest Framework, Graphene-DJango library.
+- Deployed to Heroku platform.
 
 ### Installation
 
