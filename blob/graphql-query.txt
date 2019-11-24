@@ -1,0 +1,288 @@
+query {
+  all_risktypes{
+    id,	
+    risk_type_name,
+    risk_type_description,
+    risktype_risktypefields {
+      id,
+      risktype,
+      risk_type_field_name,
+      risk_type_field_enum,
+      risk_type_field_description
+    }
+  }
+}
+
+
+query {
+  all_risks {
+    id,     
+    risktype,
+    risk_type_name,    
+    risk_name,    
+    risk_description,    
+    risk_riskfields {
+      id,    
+      risktypefield,
+      risk,        
+      risk_field_value,
+      risk_type_field_name
+    }    
+  }
+}
+
+
+####################################### getSingleRiskType ##########################################################
+
+{
+  "risktypeid": 1
+}
+
+query getSingleRisktype($risktypeid:Int!) {
+  risktypeobj:risktype(id:$risktypeid){
+    id,	
+    risk_type_name,
+    risk_type_description,
+    risktype_risktypefields {
+      id,
+      risktype,
+      risk_type_field_name,
+      risk_type_field_enum,
+      risk_type_field_description
+    }
+  }
+}
+
+
+######################################### getSingleRisk ###########################################################
+
+{
+  "riskid": 1
+}
+
+query getSingleRisk($riskid:Int!) {
+    riskinstance:risk(id:$riskid) {
+      id,     
+      risktype,
+      risk_type_name,    
+      risk_name,    
+      risk_description,    
+      risk_riskfields {
+        id,    
+        risktypefield,
+        risk,  
+        risk_type_field_enum,  
+        risk_field_value,
+        risk_type_field_name
+      }    
+    }
+ }
+
+
+
+##################################################getAllRiskByRisktype########################
+query getAllRisksByRisktype($risktypeid:Int!) {
+  riskinstances:all_risks(risktype:$risktypeid){
+    id,     
+    risktype,
+    risk_type_name,    
+    risk_name,    
+    risk_description,    
+    risk_riskfields {
+      id,    
+      risktypefield,
+      risk,        
+      risk_field_value,
+      risk_type_field_name
+    }    
+  }
+}
+
+
+query {
+  riskkeys:all_risks  {
+    id,     
+    risk_name        
+  }
+}
+
+
+query {
+  risktypekeys:all_risktypes  {
+    id,     
+    risk_type_name
+  }
+}
+
+
+
+##################################################getUserDetails########################
+query getUserDetails($user_name:String!) {
+  userdata:user(username:$user_name){
+    id,
+    username,
+    is_superuser
+  }
+}
+
+################################################## createRiskType ########################
+{ "riskTypeInput" : {"risk_type_name":"Home","risk_type_description":"Risk type for Home","risktype_risktypefields":[{"risk_type_field_name":"housenumber","risk_type_field_enum":"text","risk_type_field_description":"Alloted house number"},{"risk_type_field_name":"floors","risk_type_field_enum":"integer","risk_type_field_description":"Number of floors"},{"risk_type_field_name":"sum","risk_type_field_enum":"text","risk_type_field_description":"Insurance amount"},{"risk_type_field_name":"completion","risk_type_field_enum":"text","risk_type_field_description":"Date of completion"}]}}
+
+mutation createRiskType($riskTypeInput:RiskTypeInput!) {
+  create_risktype(input:$riskTypeInput) {
+    ok,
+    risktype{
+		risk_type_name,
+		risk_type_description,
+		risktype_risktypefields {
+		  risk_type_field_name,
+		  risk_type_field_enum,
+		  risk_type_field_description
+		}
+	} 		
+}
+}
+
+
+################################################## createRisk ########################
+{"riskInput" : {"risktype":1,"risk_name":"Toyota4","risk_description":"Risk policy for Toyota4","risk_riskfields":[{"risktypefield":3,"risk_field_value":"050000"},{"risktypefield":2,"risk_field_value":"4"},{"risktypefield":4,"risk_field_value":"05/24/2019"},{"risktypefield":1,"risk_field_value":"Toyota"}]}}
+
+
+mutation createRisk($riskInput:RiskInput!) {
+  create_risk(input:$riskInput) {
+    ok
+    risk {
+      id
+      risktype
+      risk_type_name
+      risk_name
+      risk_description
+      risk_riskfields {
+        id,
+        risktypefield,
+        risk,        
+        risk_type_field_name,
+	risk_type_field_enum,
+	risk_field_value
+      }
+    }
+  }
+}
+########################################################################################
+
+
+
+query{
+  risk_type_keys: all_risktypes {
+    id
+    risk_type_name
+  }
+}
+
+query {
+  risk_keys:all_risks {
+    id,     
+    risk_name
+  }
+}
+
+
+query getRisksByRisktype($risktypeid:Int!, $first: Int, $after: String ) {
+    riskinstances:risks(risktype:$risktypeid, first:$first, after:$after ){
+    pageInfo {
+      startCursor
+      endCursor
+      hasNextPage
+      hasPreviousPage
+    }
+    edges {
+      cursor
+      node {
+            id,     
+            risk_name,    
+            risk_description,    
+            risk_riskfields {
+              id,    
+              risktypefield,
+              risk,        
+              risk_field_value,
+              risk_type_field_enum,
+              risk_type_field_name,
+              risk_type_field_description
+            }
+	     }
+    }
+  }     
+}
+
+{"risktypeid":4 , "first":1, "after": null}
+
+query{
+  risks(risktype:4, first:1, after: "YXJyYXljb25uZWN0aW9uOjA=") {
+    pageInfo {
+      startCursor
+      endCursor
+      hasNextPage
+      hasPreviousPage
+    }
+    edges {
+      cursor
+      node {
+        id
+        risk_name,
+        risk_description,
+        risk_riskfields {
+          risktypefield,          
+          risk_type_field_name,
+          risk_type_field_enum,
+          risk_field_value,
+          risk_type_field_description
+        }
+      }
+    }
+  }
+}
+
+
+
+query getRisksByRisktype($risktypeid:Int!, $first: Int, $after: String ) {
+    riskinstances:risks(risktype:$risktypeid, first:$first, after:$after ){
+    pageInfo {
+      startCursor
+      endCursor
+      hasNextPage
+      hasPreviousPage
+    }
+    edges {
+      cursor
+      node {
+            id,     
+        	  risktype,
+        		risk_type_name
+            risk_name,    
+            risk_description            
+	     }
+    }
+  }     
+}
+
+query getRisksByRiskName($riskname:String, $first: Int, $after: String ) {
+    riskinstances:risks(risk_name:$riskname, first:$first, after:$after ){
+    pageInfo {
+      startCursor
+      endCursor
+      hasNextPage
+      hasPreviousPage
+    }
+    edges {
+      cursor
+      node {
+            id,     
+	    risktype,
+            risk_type_name
+            risk_name,    
+            risk_description            
+	     }
+    }
+  }     
+}
