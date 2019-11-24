@@ -1,4 +1,4 @@
-# DJango GraphQL PoC API Server graphql-drf-poc-api-master
+# DJango GraphQL PoC API Server
 
 Source code for the [DJango GraphQL PoC Server][server].
 
